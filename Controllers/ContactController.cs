@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WhatsappBot.Dto;
 using WhatsappBot.Entities;
-using WhatsappBot.Interfaces;
+using WhatsappBot.Repositories.Interfaces;
 
 namespace WhatsappBot.Controllers
 {
