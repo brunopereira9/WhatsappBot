@@ -15,7 +15,7 @@ namespace WhatsappBot.Repositories
             _context = context;
         }
 
-        private DbSet<PeopleEntity> GetEntity(){
+        private DbSet<People> GetEntity(){
             return _context.Peoples;
         }
 
@@ -24,45 +24,45 @@ namespace WhatsappBot.Repositories
             return GetEntity().Count(people => people.IsVerified.Equals(false));
         }
 
-        public PeopleEntity GetById(int id)
+        public People GetById(int id)
         {
             return GetEntity().SingleOrDefault(people => people.Id == id);
         }
         
-        public PeopleEntity FirstNotValidate()
+        public People FirstNotValidate()
         {
             return GetEntity().FirstOrDefault(people => people.IsVerified.Equals(false));
         }
         
-        public IEnumerable<PeopleEntity> GetByPhone(string phone)
+        public IEnumerable<People> GetByPhone(string phone)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(PeopleEntity peopleEntity)
+        public void Insert(People people)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(PeopleEntity peopleEntity)
+        public void Update(People people)
         {
-            _context.Entry(peopleEntity).State = EntityState.Modified;
+            _context.Entry(people).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void Remove(PeopleEntity peopleEntity)
+        public void Remove(People people)
         {
-            peopleEntity.SetIsVerified(true);
-            peopleEntity.SoftRemove();
-            Update(peopleEntity);
+            people.SetIsVerified(true);
+            people.SoftRemove();
+            Update(people);
         }
 
-        public void ValidateAt(PeopleEntity peopleEntity)
+        public void ValidateAt(People people)
         {
             throw new NotImplementedException();
         }
 
-        public void ValidateList(List<PeopleEntity> peopleEntity)
+        public void ValidateList(List<People> peopleEntity)
         {
             throw new NotImplementedException();
         }

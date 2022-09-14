@@ -13,7 +13,7 @@ namespace WhatsappBot.Repositories
             _context = context;
         }
 
-        private DbSet<MessageEntity> GetEntity(){
+        private DbSet<Message> GetEntity(){
             return _context.Messages;
         }
 
@@ -21,43 +21,19 @@ namespace WhatsappBot.Repositories
             return GetEntity() != null;
         }
 
-        public List<MessageEntity> GetAll()
-        {
-            return GetEntity()
-                .Where(product => product.IsDeleted == false)
-                .ToList();
-        }
-
-        public MessageEntity GetByNumber(string number)
+        public List<Message> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public MessageEntity GetByNumber(int id)
+        public Message GetByNumber(string number)
         {
             throw new NotImplementedException();
-            // return GetEntity()?
-            //     .Include(
-            //         product => product.Message
-            //             .OrderByDescending(stockConferences=>stockConferences.Id)
-            //     )
-            //     .SingleOrDefault(product => product.Id == id)!;
         }
 
-        public MessageEntity GetByContactId(string name)
+        public void Insert(Message contact)
         {
-            throw new NotImplementedException();
-            // return GetEntity()?
-            //     .Include(
-            //         product => product.Message
-            //             .OrderByDescending(stockConferences=>stockConferences.Id)
-            //     )
-            //     .SingleOrDefault(product => product.Name == name)!;
-        }
-
-        public void Insert(MessageEntity contactEntity)
-        {
-            GetEntity().Add(contactEntity);
+            GetEntity().Add(contact);
             _context.SaveChanges();
         }
 

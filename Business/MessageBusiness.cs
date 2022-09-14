@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using WhatsappBot.Business.Interfaces;
+using WhatsappBot.Dto;
 using WhatsappBot.Entities;
 using WhatsappBot.Repositories.Interfaces;
 
@@ -20,8 +21,31 @@ public class MessageBusiness : IMessageBusiness
         _httpClient.Timeout = TimeSpan.FromMinutes(5);
     }
 
-    public bool StartBotMessage(string sessionName, int numberMessage)
+    public void StartBotMessage(string sessionName, int numberMessage)
     {
-        throw new NotImplementedException();
+        try
+        {
+            throw new NotImplementedException();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public bool SendMessage(MessageDto messageDto)
+    {
+        try
+        {
+
+            
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

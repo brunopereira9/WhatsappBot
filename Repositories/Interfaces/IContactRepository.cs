@@ -4,13 +4,13 @@ namespace WhatsappBot.Repositories.Interfaces
 {
     public interface IContactRepository
     {
-        List<ContactEntity> GetAll();
-        ContactEntity GetById(int id);
-        ContactEntity GetByName(string name);
-        void Insert(ContactEntity contactEntity);
-        void Update(ContactEntity contactEntity);
-        void Remove(ContactEntity contactEntity);
-        bool ContactExists(int id);
+        List<Contact> GetAll();
+        Contact GetById(int id);
+        Contact GetByName(string name);
+        void Insert(Contact contact);
+        void Update(Contact contact);
+        void Remove(Contact contact);
+        bool ContactExists(string phone);
         bool GetEntityIsFound();
     }
 }

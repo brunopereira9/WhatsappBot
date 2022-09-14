@@ -2,9 +2,9 @@ using WhatsappBot.Dto;
 
 namespace WhatsappBot.Entities
 {
-    public class PeopleEntity
+    public class People
     {
-        public PeopleEntity(string name, string phone, bool isPrivate=false, bool isVerified=false)
+        public People(string name, string phone, bool isPrivate=false, bool isVerified=false)
         {
             Name = name;
             Phone = phone;

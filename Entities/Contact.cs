@@ -2,15 +2,14 @@ using WhatsappBot.Dto;
 
 namespace WhatsappBot.Entities
 {
-    public class ContactEntity
+    public class Contact
     {
-        public ContactEntity(string name, string phone, bool isPrivate=false)
+        public Contact(string name, string phone, bool isPrivate=false)
         {
             Name = name;
             Phone = phone;
             IsDeleted = false;
             IsPrivate = isPrivate;
-            Message = new List<MessageEntity>();
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
         }
@@ -23,18 +22,6 @@ namespace WhatsappBot.Entities
         public DateTime CreatedAt { get; private set;}
         public DateTime UpdatedAt { get; private set; }
         public DateTime? DeletedAt { get; private set; }
-        public List<MessageEntity> Message { get; private set; }
-        public void SetMessageStock(MessageDto messageDto) {
-            Message.Add(new MessageEntity(
-                messageDto.Content,
-                messageDto.TypeMessage,
-                messageDto.Caption,
-                messageDto.SessionName,
-                messageDto.DestinationNumber,
-                messageDto.FileName
-            ));
-            SetUpdatedAt();
-        }
         public void SetName(string name){
             Name = name;
             SetUpdatedAt();

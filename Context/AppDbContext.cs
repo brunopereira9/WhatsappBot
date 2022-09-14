@@ -6,9 +6,9 @@ namespace WhatsappBot.Context
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
-        public DbSet<ContactEntity> Contacts { get; set; } = null ! ;
-        public DbSet<MessageEntity> Messages { get; set; } = null ! ;
-        public DbSet<PeopleEntity> Peoples { get; set; } = null ! ;
+        public DbSet<Contact> Contacts { get; set; } = null ! ;
+        public DbSet<Message> Messages { get; set; } = null ! ;
+        public DbSet<People> Peoples { get; set; } = null ! ;
         
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

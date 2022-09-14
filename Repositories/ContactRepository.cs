@@ -13,7 +13,7 @@ namespace WhatsappBot.Repositories
             _context = context;
         }
 
-        private DbSet<ContactEntity> GetEntity(){
+        private DbSet<Contact> GetEntity(){
             return _context.Contacts;
         }
 
@@ -21,58 +21,42 @@ namespace WhatsappBot.Repositories
             return GetEntity() != null;
         }
 
-        public bool ContactExists(int id){
-            return (GetEntity()?.Any(e => e.Id == id)).GetValueOrDefault();
+        public bool ContactExists(string phone){
+            return (GetEntity()?.Any(contact => contact.Phone.Equals(phone))).GetValueOrDefault();
         }
-        public List<ContactEntity> GetAll()
+        
+        public void Insert(Contact contact)
         {
-            return GetEntity()
-                .Include(
-                    product => product.Message
-                        .OrderByDescending(stockConferences=>stockConferences.Id)
-                        .Take(1)
-                )
-                .Where(product => product.IsDeleted == false)
-                .ToList();
-        }
-
-        public ContactEntity GetById(int id)
-        {
-            return GetEntity()?
-                .Include(
-                    product => product.Message
-                        .OrderByDescending(stockConferences=>stockConferences.Id)
-                )
-                .SingleOrDefault(product => product.Id == id)!;
-        }
-
-        public ContactEntity GetByName(string name)
-        {
-            return GetEntity()?
-                .Include(
-                    product => product.Message
-                        .OrderByDescending(stockConferences=>stockConferences.Id)
-                )
-                .SingleOrDefault(product => product.Name == name)!;
-        }
-
-        public void Insert(ContactEntity contactEntity)
-        {
-            GetEntity().Add(contactEntity);
+            GetEntity().Add(contact);
             _context.SaveChanges();
         }
 
-        public void Update(ContactEntity contactEntity)
+        public void Update(Contact contact)
         {
-            _context.Entry(contactEntity).State = EntityState.Modified;
+            _context.Entry(contact).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public void Remove(ContactEntity contactEntity)
+        public void Remove(Contact contact)
         {
-            contactEntity.SoftRemove();
-            Update(contactEntity);
+            contact.SoftRemove();
+            Update(contact);
         }
+        public List<Contact> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Contact GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Contact GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

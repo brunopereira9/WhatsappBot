@@ -18,7 +18,7 @@ namespace WhatsappBot.Controllers
 
         // GET: api/Product
         [HttpGet]
-        public ActionResult<IEnumerable<ContactEntity>> GetAll()
+        public ActionResult<IEnumerable<Contact>> GetAll()
         {
             try{
                 var contacts = _repository.GetAll();
@@ -35,7 +35,7 @@ namespace WhatsappBot.Controllers
 
         // GET: api/Product/5
         [HttpGet("Id/{id}")]
-        public ActionResult<ContactEntity> GetById(int id)
+        public ActionResult<Contact> GetById(int id)
         {
             try{
                 var contact = _repository.GetById(id);
@@ -51,7 +51,7 @@ namespace WhatsappBot.Controllers
         }
         // GET: api/Product/5
         [HttpGet("Name/{name}")]
-        public ActionResult<ContactEntity> GetByName(string name)
+        public ActionResult<Contact> GetByName(string name)
         {
             try{
                 var contact = _repository.GetByName(name);
@@ -70,16 +70,16 @@ namespace WhatsappBot.Controllers
 
         // POST: api/Product
         [HttpPost]
-        public ActionResult<ContactEntity> Insert(ContactDto contactDto)
+        public ActionResult<Contact> Insert(ContactDto contactDto)
         {
             try{
                 if(contactDto.Name.Length < 3){
                     return BadRequest("Name length must be at least 3 characters long.");
                 }
                 
-                var contact = new ContactEntity(contactDto.Name, contactDto.Phone, contactDto.IsPrivate);
+                var contact = new Contact(contactDto.Name, contactDto.Phone, contactDto.IsPrivate);
                 
-                contact.SetMessageStock(contactDto.Message);
+                // contact.SetMessageStock(contactDto.Message);
                 _repository.Insert(contact);
 
                 return CreatedAtAction("Insert", new { name = contact.Name }, contact);

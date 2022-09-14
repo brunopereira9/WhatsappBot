@@ -21,12 +21,12 @@ public class PeopleBusiness : IPeopleBusiness
         _httpClient.Timeout = TimeSpan.FromMinutes(5);
     }
     
-    public void ValidateAt(PeopleEntity contactEntity)
+    public void ValidateAt(People contact)
     {
         throw new NotImplementedException();
     }
 
-    public void ValidateList(List<PeopleEntity> contactEntity)
+    public void ValidateList(List<People> contactEntity)
     {
         throw new NotImplementedException();
     }
@@ -36,7 +36,7 @@ public class PeopleBusiness : IPeopleBusiness
         throw new NotImplementedException();
     }
 
-    public async Task<List<PeopleEntity>> ValidateAll(string sessionName)
+    public async void ValidateAll(string sessionName)
     {
         do
         {
@@ -67,9 +67,8 @@ public class PeopleBusiness : IPeopleBusiness
                         continue;
                     }
                 }
-                
-                _peopleRepository.Remove(people);
-                
+
+                if (people != null) _peopleRepository.Remove(people);
             }
             catch (Exception ex)
             {
@@ -79,7 +78,6 @@ public class PeopleBusiness : IPeopleBusiness
             
         } while (_peopleRepository.FirstNotValidate() is not null);
         
-        return new List<PeopleEntity>();
     }
 
     private string CompleteNumber(int length) => length switch

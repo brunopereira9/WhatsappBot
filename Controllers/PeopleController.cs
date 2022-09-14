@@ -21,7 +21,7 @@ namespace WhatsappBot.Controllers
         
         // GET: api/People/5
         [HttpGet("Id/{id}")]
-        public ActionResult<PeopleEntity> GetById(int id)
+        public ActionResult<People> GetById(int id)
         {
             try{
                 var contact = _peopleRepository.GetById(id);
@@ -38,14 +38,12 @@ namespace WhatsappBot.Controllers
         
         // GET: api/People/validate-all
         [HttpGet("validate-all/{sessionName}")]
-        public async Task<ActionResult<List<PeopleEntity>>> ValidateAll(string sessionName)
+        public ActionResult<string> ValidateAll(string sessionName)
         {
             try{
-                var peoples = await _peopleBusiness.ValidateAll(sessionName);
-                if (!peoples.Any())
-                    return NotFound();
-
-                return Ok(peoples);
+                _peopleBusiness.ValidateAll(sessionName);
+                
+                return Ok("Validation started!");
             }catch(Exception e){
                 return BadRequest(e.Message);
             }
