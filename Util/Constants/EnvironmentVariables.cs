@@ -1,4 +1,4 @@
-namespace WhatsappBot.Constants;
+namespace WhatsappBot.Util.Constants;
 
 public class EnvironmentVariables
 {

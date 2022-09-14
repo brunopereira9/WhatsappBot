@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using WhatsappBot.Business;
 using WhatsappBot.Business.Interfaces;
-using WhatsappBot.Constants;
 using WhatsappBot.Context;
 using WhatsappBot.Repositories;
 using WhatsappBot.Repositories.Interfaces;
+using WhatsappBot.Util.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
