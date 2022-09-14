@@ -3,7 +3,6 @@ using WhatsappBot.Business;
 using WhatsappBot.Business.Interfaces;
 using WhatsappBot.Constants;
 using WhatsappBot.Context;
-using WhatsappBot.Interfaces;
 using WhatsappBot.Repositories;
 using WhatsappBot.Repositories.Interfaces;
 

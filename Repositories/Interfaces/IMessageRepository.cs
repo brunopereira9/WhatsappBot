@@ -1,6 +1,6 @@
 using WhatsappBot.Entities;
 
-namespace WhatsappBot.Interfaces
+namespace WhatsappBot.Repositories.Interfaces
 {
     public interface IMessageRepository
     {
