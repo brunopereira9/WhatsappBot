@@ -52,6 +52,7 @@ namespace WhatsappBot.Repositories
 
         public void Remove(PeopleEntity peopleEntity)
         {
+            peopleEntity.SetIsVerified(true);
             peopleEntity.SoftRemove();
             Update(peopleEntity);
         }

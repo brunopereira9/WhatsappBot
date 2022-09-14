@@ -43,28 +43,33 @@ public class PeopleBusiness : IPeopleBusiness
             try
             {
                 var people = _peopleRepository.FirstNotValidate();
-            
-                var content = new Dictionary<string, string>
-                {
-                    { "sessionName", sessionName },
-                    { "number", $"5567{people.Phone}" }
-                };
 
-                var json = JsonSerializer.Serialize(content);
-                var data = new StringContent(json, Encoding.UTF8, "application/json");
-                var httpResponse = await _httpClient.PostAsync("checkNumberStatus", data);
+                if (people?.Phone?.Length >= 7)
+                {
+                    var newPhone = $"{CompleteNumber(people.Phone.Length)}{people.Phone}";
+                    var content = new Dictionary<string, string>
+                    {
+                        { "sessionName", sessionName },
+                        { "number", newPhone }
+                    };
+                    
+                    Console.WriteLine($"Phone: {people.Phone} | newPhone: {newPhone}");
 
-                if (httpResponse.IsSuccessStatusCode)
-                {
-                    people.SetIsVerified(true);
-                    _peopleRepository.Update(people);
+                    var json = JsonSerializer.Serialize(content);
+                    var data = new StringContent(json, Encoding.UTF8, "application/json");
+                    var httpResponse = await _httpClient.PostAsync("checkNumberStatus", data);
+
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        people.SetPhone(newPhone);
+                        people.SetIsVerified(true);
+                        _peopleRepository.Update(people);
+                        continue;
+                    }
                 }
-                else
-                {
-                    people.SetIsVerified(true);
-                    _peopleRepository.Update(people);
-                    _peopleRepository.Remove(people);
-                }
+                
+                _peopleRepository.Remove(people);
+                
             }
             catch (Exception ex)
             {
@@ -77,10 +82,11 @@ public class PeopleBusiness : IPeopleBusiness
         return new List<PeopleEntity>();
     }
 
-    private bool PositionValid(char number) => number switch
+    private string CompleteNumber(int length) => length switch
     {
-        '9'=> true,
-        '8'=> true,
-        _ => false
+        11=> "55",
+        8 => "55679",
+        7 => "556799",
+        _ => "5567"
     };
 }
