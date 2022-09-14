@@ -11,8 +11,6 @@ namespace WhatsappBot.Entities
             IsDeleted = false;
             IsVerified = isVerified;
             IsPrivate = isPrivate;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
         }
         public int Id { get; private set; }
         public string? Name { get; private set; }
@@ -24,11 +22,11 @@ namespace WhatsappBot.Entities
         public string? Cpf { get; private set; }
         public string? Gender { get; private set; }
         public string? Uf { get; private set; }
-        public bool IsDeleted { get; private set; }
-        public bool IsPrivate { get; private set; }
-        public bool IsVerified { get; private set; }
-        public DateTime CreatedAt { get; private set;}
-        public DateTime UpdatedAt { get; private set; }
+        public bool IsDeleted { get; private set; } = false;
+        public bool IsPrivate { get; private set; } = false;
+        public bool IsVerified { get; private set; } = false;
+        public DateTime CreatedAt { get; private set;} = DateTime.Now;
+        public DateTime UpdatedAt { get; private set; } = DateTime.Now;
         public DateTime? DeletedAt { get; private set; }
         
         public void SetName(string name){

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WhatsappBot.Context;
 using WhatsappBot.Entities;
-using WhatsappBot.Interfaces;
+using WhatsappBot.Repositories.Interfaces;
 
 namespace WhatsappBot.Repositories
 {

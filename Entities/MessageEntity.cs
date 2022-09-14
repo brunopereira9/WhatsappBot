@@ -7,7 +7,7 @@ namespace WhatsappBot.Entities
 
         public MessageEntity(
             string content, 
-            string typeMessage, 
+            TypeMessage typeMessage, 
             string caption, 
             string sessionName,
             string destinationNumber,
@@ -26,7 +26,7 @@ namespace WhatsappBot.Entities
         public int Id { get; private set; }
         public int ContactId { get; private set; }
         public string Content  { get; private set; }
-        public string TypeMessage  { get; private set; }
+        public TypeMessage TypeMessage  { get; private set; }
         public string Caption { get; private set; }
         public string SessionName { get; private set; }
         public string DestinationNumber { get; private set; }
